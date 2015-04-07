@@ -1,0 +1,49 @@
+# =====================================
+# Unity generated
+# =====================================
+Temp/
+Obj/
+UnityGenerated/
+Library/
+Assets/AssetStoreTools*
+# =====================================
+# Visual Studio / MonoDevelop generated
+# =====================================
+ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
+# =====================================
+# OS generated
+# =====================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.dbb
+# =====================================
+# Art Assets
+# =====================================
+*.jpg
+*.jpeg
+*.bmp
+*.png
+*.ogg
+*.mp3
+*.wav
+*.fbx
+*.FBX
+*.max
+*.tif
+*.tiff
+*.psd
+*.blend
