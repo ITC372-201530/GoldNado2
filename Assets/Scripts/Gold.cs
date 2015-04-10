@@ -8,7 +8,7 @@ public class Gold : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		this.blockHealth =20.0f;
+		this.blockHealth = 20.0f;
 	}
 	
 	// Update is called once per frame
@@ -16,16 +16,18 @@ public class Gold : MonoBehaviour {
 
 	}
 	
-	void OnCollisionEnter(Collision col){
-		if(col.relativeVelocity.magnitude >5) {
+	void OnCollisionEnter(Collision col)
+	{
+		if(col.relativeVelocity.magnitude >5) 
+		{
 			this.renderer.material.color =new Color(
 				this.renderer.material.color.r +col.relativeVelocity.magnitude,
 				this.renderer.material.color.g,
 				this.renderer.material.color.b
-			);
+				);
 			this.blockHealth -=col.relativeVelocity.magnitude;
-			if(this.blockHealth <=0) {
-				
+			if(this.blockHealth <=0) 
+			{				
 				InvokeRepeating("InitBlock", 0.1f, 0f);
 			}
 		}
