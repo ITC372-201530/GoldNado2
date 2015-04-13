@@ -7,17 +7,24 @@ public class wind : MonoBehaviour
 	public GUIText output;
 
 	private int 	angle;
+	private int 	windState;
 	private float	currWSpeed;
 	private float 	maxWSpeed;
 	private float 	speedInc;
-	private bool 	countDown;
+	//private bool 	countDown;
 	private Vector3 windDir;
+
+	public const int windUp = 1;
+	public const int windDown = -1;
+	public const int windOff = 0;
 
 	
 	// Use this for initialization
 	void Start () 
 	{
-		beginWave(100f);
+		maxWSpeed = 70f;
+		windState = windOff;
+		//beginWave(100f);
 	}
 	
 	// Update is called once per frame
@@ -28,27 +35,48 @@ public class wind : MonoBehaviour
 	//Called once per physics step
 	void FixedUpdate() 
 	{	
-		if (countDown) 
-		{
-			if (currWSpeed >= maxWSpeed)		//if reached max spped
+		if (windState == windOff) {						//if not currently in wave
+			float waveChance = Random.Range(0, 10000);
+			if (waveChance >= 9990) 					//small chance a wave will start
 			{
-				currWSpeed = 0;
-				countDown = false;				//stop countDown
+				//beginWave((maxWSpeed * 1.05f));			//0% stronger than previous wave
+			}
+
+		}
+
+		if (windState == windUp) 
+		{
+			if (currWSpeed >= maxWSpeed)		//if reached max speed
+			{
+				windState = windDown;			//change wind state
 			}
 			else 								//otherwise must still be ticking			
 			{
 				currWSpeed += speedInc;			//increase speed
 			}
 		}
+		if (windState == windDown) 
+		{
+			if (currWSpeed <= 0)				//if wind completely slowed
+			{
+				currWSpeed = 0;
+				windState = windOff;			//stop wind
+			}
+			else 								//otherwise must be cooling down
+			{
+				currWSpeed -= speedInc*4;		//decrease speed
+			}
+		}
+
 	}
 
-	void beginWave(float s)
+	public void beginWave(float s)
 	{
 		setWind (s);
 		
 		speedInc = maxWSpeed / 1000;
 		currWSpeed = 0;
-		countDown = true;
+		windState = windUp;
 
 		InvokeRepeating ("updateWind", 1f, 1f);//updatewind
 	}
@@ -96,6 +124,15 @@ public class wind : MonoBehaviour
 		
 	}
 
+	public int getWindState()
+	{
+		return windState;
+	}
+
+	public float getMaxWSpeed()
+	{
+		return maxWSpeed;
+	}
 		
 
 
