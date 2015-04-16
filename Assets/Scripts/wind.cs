@@ -74,7 +74,7 @@ public class wind : MonoBehaviour
 	{
 		setWind (s);
 		
-		speedInc = maxWSpeed / 1000;
+		speedInc = maxWSpeed / 2000;
 		currWSpeed = 0;
 		windState = windUp;
 
@@ -99,14 +99,29 @@ public class wind : MonoBehaviour
 		//if (countDown) 
 		//{
 			//Change tag to "Blowable" ???
+		
+		float angleRad = angle * Mathf.Deg2Rad;
+
 			foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Gold")) {
 				if (obj.constantForce != null) {
 
 					windDir = obj.constantForce.force;
 
-					windDir.x = (Mathf.Cos (angle) * currWSpeed);
-					windDir.z = (Mathf.Sin (angle) * currWSpeed); 
+					windDir.x = (Mathf.Cos(angleRad)) * currWSpeed;
+					windDir.z = (Mathf.Sin(angleRad)) * currWSpeed; 
 					
+					obj.constantForce.force = windDir;
+				}
+		}
+		
+			foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Debris")) {
+				if (obj.constantForce != null) {
+				
+					windDir = obj.constantForce.force;
+				
+					windDir.x = ((Mathf.Cos(angleRad)) * currWSpeed) * 0.5f;
+					windDir.z = ((Mathf.Sin(angleRad)) * currWSpeed) * 0.5f; 
+				
 					obj.constantForce.force = windDir;
 				}
 			}
@@ -115,8 +130,8 @@ public class wind : MonoBehaviour
 			//Add the wind to a cloth (flag)
 			GameObject flagObj = GameObject.FindGameObjectWithTag ("Flag");
 			Vector3 flagVec = flagObj.transform.GetComponent<Cloth> ().externalAcceleration;
-			flagVec.x =  (Mathf.Cos (angle) * currWSpeed)*0.5f;
-			flagVec.z = (Mathf.Sin (angle) * currWSpeed)*0.5f; 
+			flagVec.x = (Mathf.Cos(angleRad) * currWSpeed)*1f;
+			flagVec.z = (Mathf.Sin(angleRad) * currWSpeed)*1f; 
 			flagObj.transform.GetComponent<Cloth> ().externalAcceleration = flagVec;
 		//}
 
@@ -132,6 +147,16 @@ public class wind : MonoBehaviour
 	public float getMaxWSpeed()
 	{
 		return maxWSpeed;
+	}
+
+	public Vector3 getWindDir()
+	{
+		return windDir;
+	}
+
+	public int getAngle()
+	{
+		return angle;
 	}
 		
 
