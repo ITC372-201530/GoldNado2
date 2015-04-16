@@ -92,7 +92,7 @@ public class PlaceBlock : MonoBehaviour {
 		this.tmpBlock.AddComponent("PlaceBlockDetection");
 		PlaceBlockDetection spt =(PlaceBlockDetection)this.tmpBlock.GetComponent("PlaceBlockDetection");
 		spt.detectionColor =new Color(0.5f, 0, 0, 0.5f);
-		this.tmpBlock.transform.parent =this.transform;
+		this.tmpBlock.transform.parent =this.camera.transform;//this.transform;
 		
 		this.tmpBlock.transform.rotation =Quaternion.Euler(this.lockPos, this.tmpBlock.transform.rotation.eulerAngles.y, this.lockPos); //In order to stop the block from rotating around to the camera rotation we need to reset the rotation back after we init the block
 		Color col =this.tmpBlock.renderer.material.color;
