@@ -21,6 +21,10 @@ public class playerController : MonoBehaviour {
 	private float vRotation =0.0f;
 	
 	private float vVelocity = 0.0f;
+
+	private float fSpeed = 0.0f;
+
+	private float sSpeed = 0.0f;
 	
 	// Use this for initialization
 	
@@ -69,10 +73,12 @@ public class playerController : MonoBehaviour {
 			mspeed +=this.sprintSpeed;
 			
 		}
+
+		if (this.cc.isGrounded) {
+			fSpeed = Input.GetAxis ("Vertical") * mspeed;
 		
-		float fSpeed = Input.GetAxis("Vertical") *mspeed;
-		
-		float sSpeed = Input.GetAxis("Horizontal") *this.movementSpeed;
+			sSpeed = Input.GetAxis ("Horizontal") * this.movementSpeed;
+		}
 		
 		
 		
