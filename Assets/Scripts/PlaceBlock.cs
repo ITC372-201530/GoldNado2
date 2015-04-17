@@ -120,6 +120,8 @@ public class PlaceBlock : MonoBehaviour {
 			
 			spt.detectionColor =new Color(0.5f, 0.5f, 0);
 			spt.col =col;
+			 	
+			this.tmpBlock.constantForce.enabled =true;
 			
 			this.tmpBlock =null;
 			this.player.removeBlock();
