@@ -1433,6 +1433,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: fc9fe17a0a80a2245b4e63ad109a4268, type: 2}
+      propertyPath: crosshairImage
+      value: 
+      objectReference: {fileID: 2800000, guid: b2568f963dd7ced46b3015c1e005a594, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc9fe17a0a80a2245b4e63ad109a4268, type: 2}
   m_RootGameObject: {fileID: 1860964867}
@@ -2055,7 +2059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7945160d6a0a08941a89eed5fffe04f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crosshairImage: {fileID: 2800000, guid: 4d2554f42be4550479c0d4f8757e2b3e, type: 3}
+  crosshairImage: {fileID: 2800000, guid: b2568f963dd7ced46b3015c1e005a594, type: 3}
 --- !u!1 &250223262
 GameObject:
   m_ObjectHideFlags: 0
