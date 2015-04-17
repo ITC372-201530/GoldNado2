@@ -42,7 +42,7 @@ public class rayCastShoot : MonoBehaviour {
 
 			if(Input.GetButtonDown("Fire1") && gameVariables.ammunition > 0){
 
-			gameVariables.ammunition--;
+			//gameVariables.ammunition--;
 
 				print("Weapon Number:"+weaponNumber);
 				print("Ammunition:"+gameVariables.ammunition);
