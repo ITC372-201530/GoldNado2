@@ -23,6 +23,7 @@ public class ammoObjectScript : MonoBehaviour {
 			gameVariables.ammunition += 2;
 			this.gameObject.SetActive(false);
 			gameVariables.currentPickups--;
+			print ("Current Pickups:"+gameVariables.currentPickups);
 		}
 	}
 }

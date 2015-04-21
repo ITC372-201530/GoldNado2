@@ -24,12 +24,15 @@ public class ammoDropScript : MonoBehaviour {
 		ammo3isOn = false;
 		ammo4isOn = false;
 
-		gameVariables.currentPickups = 0;
+
+
 
 		ammo1.SetActive (false);
 		ammo2.SetActive (false);
 		ammo3.SetActive (false);
 		ammo4.SetActive (false);
+
+
 
 
 	
@@ -40,6 +43,7 @@ public class ammoDropScript : MonoBehaviour {
 
 		if (gameVariables.currentPickups < maxAmmoPickups) {
 
+			print ("Current Pickups:"+gameVariables.currentPickups);
 
 			int picker = Random.Range(1,5);
 

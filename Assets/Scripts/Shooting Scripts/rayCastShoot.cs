@@ -46,6 +46,7 @@ public class rayCastShoot : MonoBehaviour {
 
 				print("Weapon Number:"+weaponNumber);
 				print("Ammunition:"+gameVariables.ammunition);
+				
 
 
 				switch(weaponNumber){
