@@ -14,16 +14,21 @@ public class ammoObjectScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		transform.Rotate (Vector3.up, spinSpeed * Time.deltaTime);
+		transform.Rotate (Vector3.back, spinSpeed * Time.deltaTime);
 	
 	}
 
 	void OnTriggerEnter(Collider collider){
-		if (collider.gameObject.tag == "Player") {
+		if (collider.gameObject.tag == "Player" && gameVariables.ammunition < 9) {
 			gameVariables.ammunition += 2;
-			this.gameObject.SetActive(false);
+			this.gameObject.SetActive (false);
 			gameVariables.currentPickups--;
-			print ("Current Pickups:"+gameVariables.currentPickups);
+			print ("Current Pickups:" + gameVariables.currentPickups);
+		} else if (collider.gameObject.tag == "Player" && gameVariables.ammunition == 9) {
+			gameVariables.ammunition += 1;
+			this.gameObject.SetActive (false);
+			gameVariables.currentPickups--;
+			print ("Current Pickups:" + gameVariables.currentPickups);
 		}
 	}
 }
