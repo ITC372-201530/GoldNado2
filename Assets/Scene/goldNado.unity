@@ -1403,7 +1403,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: fc9fe17a0a80a2245b4e63ad109a4268, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -.983420849
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: fc9fe17a0a80a2245b4e63ad109a4268, type: 2}
       propertyPath: m_LocalPosition.z
@@ -5341,8 +5341,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 988235060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1000, y: 0, z: -1000}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -500, y: 0, z: -500}
+  m_LocalScale: {x: .5, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -8383,7 +8383,7 @@ Transform:
   m_PrefabInternal: {fileID: 67880412}
   m_GameObject: {fileID: 1860964867}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -.983420849, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6650995}
@@ -8405,7 +8405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a7d9cc451c7164faa8c243d0525717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldBrick: {fileID: 100000, guid: 106fc899c5813404d8d49c3380a41c50, type: 2}
+  goldBrick: {fileID: 100000, guid: 8d952e1bde6246c40b0ee0b879abe74b, type: 2}
   Building: {fileID: 540644100}
   camera: {fileID: 160737420}
   shadow: {fileID: 100000, guid: 3f2530c40646a8c4fb36a044e11b243e, type: 2}

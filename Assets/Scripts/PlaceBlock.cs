@@ -81,11 +81,12 @@ public class PlaceBlock : MonoBehaviour {
 		Vector3 pos =this.camera.transform.position;
 		Vector3 dir =this.camera.transform.forward;
 		Quaternion rot =this.camera.transform.rotation;
-		rot.x =0;
+		//rot.x =0;
 		
 		Vector3 spawnPos =pos +dir *this.blockDist;
 		
 		this.tmpBlock =Instantiate(this.goldBrick, spawnPos, rot) as GameObject;
+		
 		this.tmpShadow =Instantiate(this.shadow, spawnPos, this.shadow.transform.rotation) as GameObject;
 		this.tmpShadow.transform.parent =this.tmpBlock.transform;
 		
