@@ -17,6 +17,8 @@ public class PlaceBlock : MonoBehaviour {
 	
 	private Player player;
 	
+	private bool buildMode;
+	
 	
 	// Use this for initialization
 	void Start () {
@@ -24,10 +26,13 @@ public class PlaceBlock : MonoBehaviour {
 		
 		this.blockDist =this.initBlockDist;
 		this.player =(Player)go.GetComponent("Player");
+		
+		this.buildMode =false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		/*
 		if(Input.GetKeyDown(KeyCode.B)) {
 			if(this.player.getBlockCount() >0) {
 				this.showBlock();
@@ -39,8 +44,22 @@ public class PlaceBlock : MonoBehaviour {
 				this.placeBlock();
 			}
 		}
+		*/
 		
-		if(Input.GetKey(KeyCode.C)) {
+		//During testing i noticed that my finger keept naturally moving to the F key to build
+		if(Input.GetKeyDown(KeyCode.F)) {
+			if(this.player.getBlockCount() >0) {
+				if(this.buildMode ==false) {
+					this.buildMode =true;
+					this.showBlock();
+				} else {
+					this.buildMode =false;
+					this.placeBlock();
+				}
+			}
+		}
+		
+		if(Input.GetKey(KeyCode.Q)) {
 			if(this.tmpBlock !=null) {
 				Quaternion rot =this.tmpBlock.transform.rotation;
 				rot.y -=0.01f;
@@ -48,7 +67,7 @@ public class PlaceBlock : MonoBehaviour {
 			}
 		}
 		
-		if(Input.GetKey(KeyCode.V)) {
+		if(Input.GetKey(KeyCode.E)) {
 			if(this.tmpBlock !=null) {
 				Quaternion rot =this.tmpBlock.transform.rotation;
 				rot.y +=0.01f;
@@ -58,11 +77,15 @@ public class PlaceBlock : MonoBehaviour {
 		
 		if(Input.GetAxis("Mouse ScrollWheel") !=0) {
 			if(this.tmpBlock !=null) {
-				Vector3 pos =this.camera.transform.position;
+				//Vector3 pos =this.camera.transform.position;
+				Vector3 pos =this.tmpBlock.transform.position;
 				Vector3 dir =this.camera.transform.forward;
-				this.blockDist -=-Input.GetAxis("Mouse ScrollWheel");
-				
-				Vector3 spawnPos =pos +dir *this.blockDist;
+				Vector3 spawnPos;
+				if(Input.GetAxis("Mouse ScrollWheel") >0)
+					spawnPos =pos +dir *0.5f;
+				else
+					spawnPos =pos +dir *-0.5f;
+					
 				this.tmpBlock.transform.position =spawnPos;
 			}
 		}

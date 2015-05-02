@@ -11,8 +11,6 @@ public class PickupGold : MonoBehaviour {
 		//PlaceBlockDetection spt =(PlaceBlockDetection)this.tmpBlock.GetComponent("PlaceBlockDetection");
 		this.sb =(spawnBlocks)go.GetComponent("spawnBlocks");
 		this.player =(Player)go.GetComponent("Player");
-		
-		print (this.sb);
 	}
 	
 	// Update is called once per frame
@@ -20,9 +18,11 @@ public class PickupGold : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider other) {
-		this.player.addBlock();
-		this.sb.removeSpawnCount();
-		
-		Destroy(this.gameObject);
+		if(other.gameObject.tag =="Player") {
+			this.player.addBlock();
+			this.sb.removeSpawnCount();
+			
+			Destroy(this.gameObject);
+		}
 	}
 }

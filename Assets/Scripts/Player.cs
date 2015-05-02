@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
 	}
 	
 	public void addBlock() {
-		this.blockCount +=5;
+		this.blockCount +=12;
 		this.drawText();
 	}
 	
