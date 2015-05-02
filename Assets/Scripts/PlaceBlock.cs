@@ -59,19 +59,15 @@ public class PlaceBlock : MonoBehaviour {
 			}
 		}
 		
-		if(Input.GetKey(KeyCode.Q)) {
+		if(Input.GetKey(KeyCode.E)) {
 			if(this.tmpBlock !=null) {
-				Quaternion rot =this.tmpBlock.transform.rotation;
-				rot.y -=0.01f;
-				this.tmpBlock.transform.rotation =rot;
+				this.tmpBlock.transform.Rotate(Vector3.up, -(50 *Time.deltaTime));
 			}
 		}
 		
-		if(Input.GetKey(KeyCode.E)) {
+		if(Input.GetKey(KeyCode.Q)) {
 			if(this.tmpBlock !=null) {
-				Quaternion rot =this.tmpBlock.transform.rotation;
-				rot.y +=0.01f;
-				this.tmpBlock.transform.rotation =rot;
+				this.tmpBlock.transform.Rotate(Vector3.up, 50 *Time.deltaTime);
 			}
 		}
 		
@@ -82,9 +78,9 @@ public class PlaceBlock : MonoBehaviour {
 				Vector3 dir =this.camera.transform.forward;
 				Vector3 spawnPos;
 				if(Input.GetAxis("Mouse ScrollWheel") >0)
-					spawnPos =pos +dir *0.5f;
+					spawnPos =pos +dir *(5.5f *Time.deltaTime);
 				else
-					spawnPos =pos +dir *-0.5f;
+					spawnPos =pos +dir *-(5.5f *Time.deltaTime);
 					
 				this.tmpBlock.transform.position =spawnPos;
 			}
@@ -92,9 +88,13 @@ public class PlaceBlock : MonoBehaviour {
 		
 		if(Input.GetAxis("Mouse Y") !=0) {
 			if(this.tmpBlock !=null) {
-				Vector3 upP =this.tmpBlock.transform.position;
-				upP.y +=Input.GetAxis("Mouse Y");
-				this.tmpBlock.transform.position =upP;
+				Quaternion r =this.tmpBlock.transform.rotation;
+				r.x =0;
+				r.z =0;
+				this.tmpBlock.transform.rotation =r;
+				//Vector3 upP =this.tmpBlock.transform.position;
+				//upP.y +=Input.GetAxis("Mouse Y");
+				//this.tmpBlock.transform.position =upP;
 			}
 		}
 		
