@@ -23,8 +23,8 @@ public class wind : MonoBehaviour
 	void Start () 
 	{
 		output.text = "Wind Direction X: " + windDir.x.ToString () + ", Z: " + windDir.z.ToString () + ", Speed: " + currWSpeed + " / " + maxWSpeed;
-		maxWSpeed = 50f;
 		windState = windOff;
+		maxWSpeed = 50;
 		//beginWave(100f);
 	}
 	
@@ -67,7 +67,9 @@ public class wind : MonoBehaviour
 
 	public void beginWave(float s)
 	{
-		setWind (s);
+		//setWind (s);
+		angle = Random.Range(0, 360);
+		maxWSpeed = s;//get from wave timer function
 		
 		speedInc = maxWSpeed / 1000;
 		currWSpeed = 0;
@@ -76,12 +78,6 @@ public class wind : MonoBehaviour
 		InvokeRepeating ("updateWind", 1f, 1f);//updatewind
 	}
 
-	void setWind(float s)
-	{
-		angle = Random.Range(0, 360);		
-		//maxSpeed = Random.Range(0f, 10f);//get from wave timer function
-		maxWSpeed = s;//get from wave timer function
-	}
 	
 	void updateWind() 
 	{
@@ -108,7 +104,7 @@ public class wind : MonoBehaviour
 					
 					obj.constantForce.force = windDir;					//Gold very slightly affected by wind
 				}
-		}
+			}
 		
 			foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Debris")) 
 			{

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class debris : MonoBehaviour {
@@ -29,27 +29,20 @@ public class debris : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		
-	}
-
-	void FixedUpdate() 
-	{
-
-		float throwChance = Random.Range(0, 10000);
-		if (throwChance >= 9900) 					//small chance to bounce
-		{
-			//throwDebris();						
-		}
 		Vector3 pos = this.transform.position;
 		if (pos.y <= -2) 
 		{
 			//Destroy(this);
 		}
+		
+	}
+
+	void FixedUpdate() 
+	{
 	}
 	
 	void OnCollisionEnter(Collision col)
-	{
-		
+	{		
 	}
 	
 	void InitDebris() 
