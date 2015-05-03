@@ -19,7 +19,7 @@ public class waveController : MonoBehaviour {
 		//kill debris
 		waveOn = false;
 		currentWave = 1;
-		waveMultiplier = 1.1f;
+		waveMultiplier = 1.02f;
 		//windObj.beginWave(100f);
 	
 	}
@@ -37,7 +37,7 @@ public class waveController : MonoBehaviour {
 		if (!waveOn) 
 		{
 			float waveChance = Random.Range (0, 10000);
-			if (waveChance <= 25) { 											//small chance a wave will start
+			if (waveChance <= 10) { 											//small chance a wave will start
 				waveOn = true;
 				windObj.beginWave(windObj.getMaxWSpeed () * waveMultiplier);
 			}

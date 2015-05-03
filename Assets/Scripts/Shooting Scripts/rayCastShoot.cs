@@ -47,6 +47,7 @@ public class rayCastShoot : MonoBehaviour {
 		direction.x += Random.Range (-spreadFactor, spreadFactor);
 		direction.y += Random.Range (-spreadFactor, spreadFactor);
 		direction.z += Random.Range (-spreadFactor, spreadFactor);
+<<<<<<< HEAD
 		
 		switch(weaponNumber){
 			
@@ -100,6 +101,65 @@ public class rayCastShoot : MonoBehaviour {
 				Destroy(particleClone.gameObject,2);
 				
 				hit.transform.SendMessage("applyDamage", damage,SendMessageOptions.DontRequireReceiver);
+=======
+
+
+			if(Input.GetButtonDown("Fire1") && gameVariables.ammunition > 0){
+
+			//gameVariables.ammunition--;
+
+				print("Weapon Number:"+weaponNumber);
+				print("Ammunition:"+gameVariables.ammunition);
+
+
+				switch(weaponNumber){
+
+				case 1:
+					placeHolderEffect = yellowEffect;
+					break;
+				case 2:
+					placeHolderEffect = redEffect;
+					break;
+				case 3:
+					placeHolderEffect = blueEffect;
+					break;
+				case 4:
+					placeHolderEffect = greenEffect;
+					break;
+				default:
+					placeHolderEffect = yellowEffect;
+					break;
+
+				}
+
+
+				if(Physics.Raycast (ray,out hit,hitRange)){
+
+
+
+
+					Transform particleClone = Instantiate(placeHolderEffect,hit.point,Quaternion.LookRotation(hit.normal)) as Transform;
+					
+					Destroy(particleClone.gameObject,2);
+
+					hit.transform.SendMessage("applyDamage", damage,SendMessageOptions.DontRequireReceiver);
+
+
+
+				}
+
+
+
+			}
+
+	
+			if (Input.GetButtonDown ("Weapon1")) {
+
+				weaponNumber = 1;
+			}
+
+			if (Input.GetButtonDown ("Weapon2")) {
+>>>>>>> origin/master
 				
 				
 				

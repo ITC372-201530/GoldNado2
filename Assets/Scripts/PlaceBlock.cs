@@ -17,6 +17,8 @@ public class PlaceBlock : MonoBehaviour {
 	
 	private Player player;
 	
+	private bool buildMode;
+	
 	
 	// Use this for initialization
 	void Start () {
@@ -24,10 +26,13 @@ public class PlaceBlock : MonoBehaviour {
 		
 		this.blockDist =this.initBlockDist;
 		this.player =(Player)go.GetComponent("Player");
+		
+		this.buildMode =false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		/*
 		if(Input.GetKeyDown(KeyCode.B)) {
 			if(this.player.getBlockCount() >0) {
 				this.showBlock();
@@ -39,39 +44,57 @@ public class PlaceBlock : MonoBehaviour {
 				this.placeBlock();
 			}
 		}
+		*/
 		
-		if(Input.GetKey(KeyCode.C)) {
-			if(this.tmpBlock !=null) {
-				Quaternion rot =this.tmpBlock.transform.rotation;
-				rot.y -=0.01f;
-				this.tmpBlock.transform.rotation =rot;
+		//During testing i noticed that my finger keept naturally moving to the F key to build
+		if(Input.GetKeyDown(KeyCode.F)) {
+			if(this.player.getBlockCount() >0) {
+				if(this.buildMode ==false) {
+					this.buildMode =true;
+					this.showBlock();
+				} else {
+					this.buildMode =false;
+					this.placeBlock();
+				}
 			}
 		}
 		
-		if(Input.GetKey(KeyCode.V)) {
+		if(Input.GetKey(KeyCode.E)) {
 			if(this.tmpBlock !=null) {
-				Quaternion rot =this.tmpBlock.transform.rotation;
-				rot.y +=0.01f;
-				this.tmpBlock.transform.rotation =rot;
+				this.tmpBlock.transform.Rotate(Vector3.up, -(50 *Time.deltaTime));
+			}
+		}
+		
+		if(Input.GetKey(KeyCode.Q)) {
+			if(this.tmpBlock !=null) {
+				this.tmpBlock.transform.Rotate(Vector3.up, 50 *Time.deltaTime);
 			}
 		}
 		
 		if(Input.GetAxis("Mouse ScrollWheel") !=0) {
 			if(this.tmpBlock !=null) {
-				Vector3 pos =this.camera.transform.position;
+				//Vector3 pos =this.camera.transform.position;
+				Vector3 pos =this.tmpBlock.transform.position;
 				Vector3 dir =this.camera.transform.forward;
-				this.blockDist -=-Input.GetAxis("Mouse ScrollWheel");
-				
-				Vector3 spawnPos =pos +dir *this.blockDist;
+				Vector3 spawnPos;
+				if(Input.GetAxis("Mouse ScrollWheel") >0)
+					spawnPos =pos +dir *(5.5f *Time.deltaTime);
+				else
+					spawnPos =pos +dir *-(5.5f *Time.deltaTime);
+					
 				this.tmpBlock.transform.position =spawnPos;
 			}
 		}
 		
 		if(Input.GetAxis("Mouse Y") !=0) {
 			if(this.tmpBlock !=null) {
-				Vector3 upP =this.tmpBlock.transform.position;
-				upP.y +=Input.GetAxis("Mouse Y");
-				this.tmpBlock.transform.position =upP;
+				Quaternion r =this.tmpBlock.transform.rotation;
+				r.x =0;
+				r.z =0;
+				this.tmpBlock.transform.rotation =r;
+				//Vector3 upP =this.tmpBlock.transform.position;
+				//upP.y +=Input.GetAxis("Mouse Y");
+				//this.tmpBlock.transform.position =upP;
 			}
 		}
 		
@@ -81,11 +104,12 @@ public class PlaceBlock : MonoBehaviour {
 		Vector3 pos =this.camera.transform.position;
 		Vector3 dir =this.camera.transform.forward;
 		Quaternion rot =this.camera.transform.rotation;
-		rot.x =0;
+		//rot.x =0;
 		
 		Vector3 spawnPos =pos +dir *this.blockDist;
 		
 		this.tmpBlock =Instantiate(this.goldBrick, spawnPos, rot) as GameObject;
+		
 		this.tmpShadow =Instantiate(this.shadow, spawnPos, this.shadow.transform.rotation) as GameObject;
 		this.tmpShadow.transform.parent =this.tmpBlock.transform;
 		
@@ -120,6 +144,8 @@ public class PlaceBlock : MonoBehaviour {
 			
 			spt.detectionColor =new Color(0.5f, 0.5f, 0);
 			spt.col =col;
+			 	
+			this.tmpBlock.constantForce.enabled =true;
 			
 			this.tmpBlock =null;
 			this.player.removeBlock();
