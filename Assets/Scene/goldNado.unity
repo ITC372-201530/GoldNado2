@@ -73,7 +73,6 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
-    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1 &6650994
 GameObject:
@@ -124,6 +123,10 @@ MonoBehaviour:
   damage: 100
   hitRange: 100
   spreadFactor: .0199999996
+  gun1: {fileID: 0}
+  gun2: {fileID: 0}
+  gun3: {fileID: 0}
+  gun4: {fileID: 0}
   yellowEffect: {fileID: 1536842847}
   redEffect: {fileID: 23418837}
   blueEffect: {fileID: 519184883}
