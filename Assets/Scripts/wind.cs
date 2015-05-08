@@ -22,8 +22,9 @@ public class wind : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		maxWSpeed = 70f;
+		output.text = "Wind Direction X: " + windDir.x.ToString () + ", Z: " + windDir.z.ToString () + ", Speed: " + currWSpeed + " / " + maxWSpeed;
 		windState = windOff;
+		maxWSpeed = 50;
 		//beginWave(100f);
 	}
 	
@@ -36,19 +37,13 @@ public class wind : MonoBehaviour
 	void FixedUpdate() 
 	{	
 		if (windState == windOff) {						//if not currently in wave
-			float waveChance = Random.Range(0, 10000);
-			if (waveChance >= 9990) 					//small chance a wave will start
-			{
-				//beginWave((maxWSpeed * 1.05f));			//0% stronger than previous wave
-			}
-
 		}
 
 		if (windState == windUp) 
 		{
 			if (currWSpeed >= maxWSpeed)		//if reached max speed
 			{
-				windState = windDown;			//change wind state
+				//windState = windDown;			//stay at max speed
 			}
 			else 								//otherwise must still be ticking			
 			{
@@ -72,21 +67,17 @@ public class wind : MonoBehaviour
 
 	public void beginWave(float s)
 	{
-		setWind (s);
+		//setWind (s);
+		angle = Random.Range(0, 360);
+		maxWSpeed = s;//get from wave timer function
 		
-		speedInc = maxWSpeed / 2000;
+		speedInc = maxWSpeed / 1000;
 		currWSpeed = 0;
 		windState = windUp;
 
 		InvokeRepeating ("updateWind", 1f, 1f);//updatewind
 	}
 
-	void setWind(float s)
-	{
-		angle = Random.Range(0, 360);		
-		//maxSpeed = Random.Range(0f, 10f);//get from wave timer function
-		maxWSpeed = s;//get from wave timer function
-	}
 	
 	void updateWind() 
 	{
@@ -102,19 +93,21 @@ public class wind : MonoBehaviour
 		
 		float angleRad = angle * Mathf.Deg2Rad;
 
-			foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Gold")) {
+			foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Gold")) 
+			{
 				if (obj.constantForce != null) {
 
 					windDir = obj.constantForce.force;
 
-					windDir.x = (Mathf.Cos(angleRad)) * currWSpeed;
-					windDir.z = (Mathf.Sin(angleRad)) * currWSpeed; 
+					windDir.x = ((Mathf.Cos(angleRad)) * currWSpeed) * 0.1f;
+					windDir.z = ((Mathf.Sin(angleRad)) * currWSpeed) * 0.1f; 
 					
-					obj.constantForce.force = windDir;
+					obj.constantForce.force = windDir;					//Gold very slightly affected by wind
 				}
-		}
+			}
 		
-			foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Debris")) {
+			foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Debris")) 
+			{
 				if (obj.constantForce != null) {
 				
 					windDir = obj.constantForce.force;
@@ -122,7 +115,7 @@ public class wind : MonoBehaviour
 					windDir.x = ((Mathf.Cos(angleRad)) * currWSpeed) * 0.5f;
 					windDir.z = ((Mathf.Sin(angleRad)) * currWSpeed) * 0.5f; 
 				
-					obj.constantForce.force = windDir;
+					obj.constantForce.force = windDir;					//Debris dramatically affected by wind
 				}
 			}
 
@@ -138,6 +131,7 @@ public class wind : MonoBehaviour
 		output.text = "Wind Direction X: " + windDir.x.ToString () + ", Z: " + windDir.z.ToString () + ", Speed: " + currWSpeed + " / " + maxWSpeed;
 		
 	}
+
 
 	public int getWindState()
 	{
@@ -157,6 +151,16 @@ public class wind : MonoBehaviour
 	public int getAngle()
 	{
 		return angle;
+	}
+
+	public void setWindStateUp()
+	{
+		windState = windUp;
+	}
+
+	public void setWindStateDown()
+	{
+		windState = windDown;
 	}
 		
 
