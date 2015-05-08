@@ -74,11 +74,11 @@ public class playerController : MonoBehaviour {
 			
 		}
 
-		if (this.cc.isGrounded) {
+		//if (this.cc.isGrounded) {
 			fSpeed = Input.GetAxis ("Vertical") * mspeed;
 		
 			sSpeed = Input.GetAxis ("Horizontal") * this.movementSpeed;
-		}
+		//}
 		
 		
 		

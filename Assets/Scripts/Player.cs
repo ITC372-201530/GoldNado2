@@ -7,7 +7,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		this.blockCount =0;
+		this.blockCount =20;
 	}
 	
 	// Update is called once per frame
@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
 	}
 	
 	public void addBlock() {
-		this.blockCount +=5;
+		this.blockCount +=12;
 		this.drawText();
 	}
 	
