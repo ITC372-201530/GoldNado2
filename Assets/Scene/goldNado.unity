@@ -73,6 +73,7 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
+    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1 &6650994
 GameObject:
@@ -5945,6 +5946,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debrisObj: {fileID: 0}
   rb: {fileID: 0}
+  debrisHolder: {fileID: 0}
 --- !u!54 &1274814854
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6539,6 +6541,7 @@ MonoBehaviour:
   output: {fileID: 1843323953}
   windObj: {fileID: 1392018957}
   debrisObj: {fileID: 1274814853}
+  debrisHolder: {fileID: 0}
 --- !u!4 &1411078061
 Transform:
   m_ObjectHideFlags: 0
@@ -8481,7 +8484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a7d9cc451c7164faa8c243d0525717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldBrick: {fileID: 100000, guid: 8d952e1bde6246c40b0ee0b879abe74b, type: 2}
+  goldBrick: {fileID: 112704, guid: 9b83d1ddf664beb419ba7e8e947c4cef, type: 2}
   Building: {fileID: 540644100}
   camera: {fileID: 160737420}
   shadow: {fileID: 100000, guid: 3f2530c40646a8c4fb36a044e11b243e, type: 2}

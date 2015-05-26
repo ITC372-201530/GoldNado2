@@ -10,20 +10,24 @@ public class waveController : MonoBehaviour {
 	private int debrisThrown;
 	private float waveMultiplier;
 	private float waveClock;
-
+	
 	private float currentHeight;
 	private float tempHeight;
 	private float heightClock;
 	private bool heightFlag;
-
-	private const float windTime = 10f;
-	private const float buildTime = 15f;
+	
+	private const float windTime	= 10f;
+	private const float buildTime 	= 15f;
+	private const float heightTime 	= 2f;
 	
 	public GUIText output;
-
-
+	
+	
 	public wind windObj;
 	public debris debrisObj;
+	
+	public GameObject debrisHolder;
+	
 	//public List<debris> debrisList = new List<debris>();
 	
 	private bool waveOn;
@@ -31,6 +35,8 @@ public class waveController : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		
+	
 		waveOn = false;
 		currentWave = 0;
 		score = 0;
@@ -39,6 +45,7 @@ public class waveController : MonoBehaviour {
 		waveMultiplier = 1f;
 		waveClock = buildTime;		
 		currentHeight = 0;
+		tempHeight = 0;
 		heightClock = 2;
 		heightFlag = false;
 	}
@@ -52,20 +59,20 @@ public class waveController : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		waveClock -= Time.deltaTime;
-
+		
 		if (heightFlag) 
 		{
-			heightClock -= Time.deltaTime;
+			heightClock += Time.deltaTime;
 		} 
-		else 
+		if (!heightFlag)
 		{
-			heightClock = 2;
+			heightClock = 0;
 		}
-
+		
 		if (!waveOn) 							//if not currently in a wave / in build phase
 		{
 			output.text = "Next Wave In: " + (int)waveClock;
-
+			
 			if (waveClock <= 0)					//when build phase over, start wave
 			{ 			
 				removeDebris();	
@@ -89,7 +96,7 @@ public class waveController : MonoBehaviour {
 				debrisThrown +=1;
 			}
 			//check if reached goal height
-
+			
 			if (waveClock <= 0)
 			{
 				endWave();
@@ -97,38 +104,57 @@ public class waveController : MonoBehaviour {
 			}			
 		}
 		checkGoalHeight();
-		output.text += " Wave: " + currentWave + "  Goal Height: " + goalHeight + "  SCORE:  " + score + "   T: " + debrisThrown;
+		output.text += " Wave: " + currentWave + "  Goal Height: " + goalHeight + "  SCORE:  " + score + "   T: " + debrisThrown + "  CurrentHeight: " + currentHeight;
 	}
-
+	
 	void checkGoalHeight()
 	{
 		//tempHeight = 0;
 		//float maxHeight = 0;
 		float yPos = 0;
-
+		float tHold = 0.002f; //threshold
+		float maxY = 0;
+		//float tempHeight = 0;
+		
 		foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Gold")) 
 		{
 			if (obj.constantForce != null)
 			{
 				yPos = obj.transform.position.y;
-				if (yPos >= tempHeight-0.02)
+				if (yPos >= maxY-tHold)		
 				{
-					tempHeight = yPos;
-					//maxHeight = tempHeight;
-					heightClock = 2;
-					heightFlag = true;
-				}
-
-				if (heightClock == 0)	//if been at this height for 2 seconds
-				{
-					//currentHeight = tempHeight;
-					//heightFlag = false;
+					maxY = yPos;					//find highest Y of all blocks
 				}
 			}
 		}
-		//output.text += "  temp: " + tempHeight + "  yPos: " + yPos + "  currentHeight:  " + currentHeight +  "  clock: " + heightClock;
+		
+		if (maxY >= currentHeight)					//if maxY is higher than tempHeight
+		{
+			tempHeight = maxY;						//store maxY in tempHeight
+			heightFlag = true;						//begin timer
+		}
+		
+		if (maxY <= currentHeight)					//if maxY falls below temp height
+		{
+			currentHeight = maxY;					//lower currentHeight
+			heightFlag = false;						//reset timer
+			heightClock = 0;
+			tempHeight = 0;
+		}
+		
+		if (heightClock >= heightTime)				//if reach time without resetng timer (block hasn't fallen)
+		{
+			currentHeight = tempHeight;				//save tempHeight as current height.
+			heightFlag = false;
+			heightClock = 0;
+			tempHeight = 0;
+		}
+		
+		
+		
+		//output.text += "  temp: " + tempHeight + "  maxY: " + maxY + "  currentHeight:  " + currentHeight +  "  clock: " + heightClock;
 	}
-
+	
 	void removeDebris()
 	{
 		foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Debris")) 
@@ -136,16 +162,21 @@ public class waveController : MonoBehaviour {
 			//Destroy(obj);
 		}
 	}
-
+	
 	void endWave()
 	{
-		float tScore = (waveClock * 10)*(waveMultiplier) + currentWave * 10; //add remaining time to score (seconds * 10)
-		score = (int)tScore;
+		float tScore = waveClock * 10; 							//add remaining time to score (seconds * 10)
+		tScore += currentWave * 20;								//for completeing wave
+		tScore += currentHeight * 5;							//height 
+		tScore = tScore * waveMultiplier;						//multiply by difficulty
+		
+		
+		score += (int)tScore;
 		waveMultiplier += 0.02f;
 		waveOn = false;
 		windObj.setWindStateDown();
 		waveClock = buildTime;
 	}
-
+	
 	//get remainingTime for score
 }

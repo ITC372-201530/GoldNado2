@@ -104,7 +104,7 @@ public class PlaceBlock : MonoBehaviour {
 		Vector3 pos =this.camera.transform.position;
 		Vector3 dir =this.camera.transform.forward;
 		Quaternion rot =this.camera.transform.rotation;
-		//rot.x =0;
+		rot.y =90;
 		
 		Vector3 spawnPos =pos +dir *this.blockDist;
 		

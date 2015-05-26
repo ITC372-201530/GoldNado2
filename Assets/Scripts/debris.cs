@@ -5,6 +5,7 @@ public class debris : MonoBehaviour {
 
 	public GameObject debrisObj;
 	public Rigidbody rb;
+	public GameObject debrisHolder;
 
 	
 	private float hitPoints;

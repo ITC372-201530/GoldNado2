@@ -12,6 +12,8 @@ TagManager:
   - gameControls
   - Blowable
   - Debris
+  - DebrisHolder
+  - ammo
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
