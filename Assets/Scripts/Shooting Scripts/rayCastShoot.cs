@@ -4,9 +4,14 @@ using System.Collections;
 public class rayCastShoot : MonoBehaviour {
 	
 	
-	public float damage = 100.0f;
-	public float hitRange = 100.0f;
+	private float damage = 100.0f;
+	private float hitRange =100.0f;
+	public float revolverRange = 50.0f;
+	public float rifleRange = 100.0f;
+	public float shotgunRange = 25.0f;
 	public float spreadFactor = 0.02f;
+	public int shotgunPellets = 10;
+
 	
 	public GameObject gun1;
 	public GameObject gun2;
@@ -20,6 +25,14 @@ public class rayCastShoot : MonoBehaviour {
 	public Transform blueEffect;
 	public Transform greenEffect;
 	private Transform placeHolderEffect;
+
+	public AudioClip revolverShot;
+	public AudioClip rifleShot;
+	public AudioClip shotgunShot;
+	public AudioClip noAmmo;
+	private AudioClip placeHolderShot;
+
+	private AudioSource source;
 	
 	//public GameObject[] weapons;
 	//public GameObject currentWeapon;
@@ -33,6 +46,11 @@ public class rayCastShoot : MonoBehaviour {
 		currentGun = gun1;
 		gunEnabler (currentGun);
 		
+	}
+
+	void Awake(){
+
+		source = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -54,16 +72,22 @@ public class rayCastShoot : MonoBehaviour {
 			currentGun = gun1;
 			gunEnabler(currentGun);
 			placeHolderEffect = yellowEffect;
+			placeHolderShot = revolverShot;
+			hitRange = revolverRange;
 			break;
 		case 2:
 			currentGun = gun2;
 			gunEnabler(currentGun);
 			placeHolderEffect = redEffect;
+			placeHolderShot = rifleShot;
+			hitRange = rifleRange;
 			break;
 		case 3:
 			currentGun = gun3;
 			gunEnabler(currentGun);
 			placeHolderEffect = blueEffect;
+			placeHolderShot = shotgunShot;
+			hitRange = shotgunRange;
 			break;
 		case 4:
 			currentGun = gun4;
@@ -79,27 +103,27 @@ public class rayCastShoot : MonoBehaviour {
 		}
 		
 		
-		if(Input.GetButtonDown("Fire1") && gameVariables.ammunition > 0){
+		if (Input.GetButtonDown ("Fire1") && gameVariables.ammunition > 0 && currentGun != gun3) {
 			
 			gameVariables.ammunition--;
 			
-			print("Weapon Number:"+weaponNumber);
-			print("Ammunition:"+gameVariables.ammunition);
+			print ("Weapon Number:" + weaponNumber);
+			print ("Ammunition:" + gameVariables.ammunition);
 			
-			//Where the switch went
+
+			source.PlayOneShot (placeHolderShot, 1.0f);
 			
 			
-			
-			if(Physics.Raycast (ray,out hit,hitRange)){
+			if (Physics.Raycast (ray, out hit, hitRange)) {
 				
 				
 				
+
+				Transform particleClone = Instantiate (placeHolderEffect, hit.point, Quaternion.LookRotation (hit.normal)) as Transform;
 				
-				Transform particleClone = Instantiate(placeHolderEffect,hit.point,Quaternion.LookRotation(hit.normal)) as Transform;
+				Destroy (particleClone.gameObject, 2);
 				
-				Destroy(particleClone.gameObject,2);
-				
-				hit.transform.SendMessage("applyDamage", damage,SendMessageOptions.DontRequireReceiver);
+				hit.transform.SendMessage ("applyDamage", damage, SendMessageOptions.DontRequireReceiver);
 				
 				
 				
@@ -107,6 +131,62 @@ public class rayCastShoot : MonoBehaviour {
 			
 			
 			
+		} else if (Input.GetButtonDown ("Fire1") && gameVariables.ammunition > 0 && currentGun == gun3) {
+			
+			gameVariables.ammunition--;
+			
+			print ("Weapon Number:" + weaponNumber);
+			print ("Ammunition:" + gameVariables.ammunition);
+
+
+			source.PlayOneShot (placeHolderShot, 1.0f);
+
+			Vector3 gunForward = Camera.main.transform.forward;
+			gunForward.y  = gunForward.y + 0.1f;
+			var gunPos = transform.position;
+			var cachedTrans = transform;
+			Vector3 middleScreen = new Vector3(Screen.width/2,Screen.height/2,0);
+
+			for(int i = 0; i < shotgunPellets; i++)
+			{
+				var bulletVec = gunForward + cachedTrans.TransformDirection(
+					new Vector3(
+					Random.Range (-spreadFactor, spreadFactor),
+					Random.Range (-spreadFactor, spreadFactor),
+					0));
+
+				if (Physics.Raycast (gunPos, bulletVec, out hit, hitRange)) {
+					
+					
+					
+					
+					Transform particleClone = Instantiate (placeHolderEffect, hit.point, Quaternion.LookRotation (hit.normal)) as Transform;
+					
+					Destroy (particleClone.gameObject, 2);
+					
+					hit.transform.SendMessage ("applyDamage", damage, SendMessageOptions.DontRequireReceiver);
+					
+					
+					
+				}
+
+
+
+			}
+
+
+
+
+
+
+
+
+
+
+		}else if(Input.GetButtonDown ("Fire1") && gameVariables.ammunition == 0){
+
+			source.PlayOneShot(noAmmo,1.0f);
+
 		}
 		
 		

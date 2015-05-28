@@ -2,7 +2,22 @@ fileFormatVersion: 2
 guid: c90aa789477120c4b87dcbde289eae96
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - ammoTexture: {fileID: 2800000, guid: 8aaafd935e11b074fbda3f86b96eb43a, type: 3}
+  - zeroTexture: {fileID: 2800000, guid: ba9d2525d9f73f548a3b112bd0d9cd6a, type: 3}
+  - oneTexture: {fileID: 2800000, guid: 60a54e471f4fc524c95eb2eba87bb519, type: 3}
+  - twoTexture: {fileID: 2800000, guid: 09e4ae8b2662b394a85a03e5b8321da6, type: 3}
+  - threeTexture: {fileID: 2800000, guid: 901832a38cae7da40b343f8a0825af73, type: 3}
+  - fourTexture: {fileID: 2800000, guid: be23d9d429bb5704da4fba4413c02af9, type: 3}
+  - fiveTexture: {fileID: 2800000, guid: d2fcb199e5c442e4699392f60f6f45dd, type: 3}
+  - sixTexture: {fileID: 2800000, guid: 4ca9dee0b8f70bb4289313053d2132d7, type: 3}
+  - sevenTexture: {fileID: 2800000, guid: ea2f718c8de4c2e4696f87ad2f291429, type: 3}
+  - eightTexture: {fileID: 2800000, guid: 2d750aa00707f4f4a95ed5bd51fa4fb5, type: 3}
+  - nineTexture: {fileID: 2800000, guid: fb85117d11bd04647936739cba69d1e1, type: 3}
+  - tenTexture: {fileID: 2800000, guid: 961f9448e39d20346a60582e351a6dc8, type: 3}
+  - elevenTexture: {fileID: 2800000, guid: 752bc75ff3439b64ea92af811d1844ed, type: 3}
+  - twelveTexture: {fileID: 2800000, guid: be42a69ba9359394b978b12f3b5d3e03, type: 3}
+  - defaultTexture: {fileID: 2800000, guid: 8aaafd935e11b074fbda3f86b96eb43a, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
