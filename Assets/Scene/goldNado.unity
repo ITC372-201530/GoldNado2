@@ -125,7 +125,10 @@ MonoBehaviour:
   rifleRange: 100
   shotgunRange: 25
   spreadFactor: .0199999996
-  shotgunPellets: 7
+  shotgunPellets: 10
+  revolverTimer: 5
+  rifleTimer: 10
+  shotgunTimer: 7
   gun1: {fileID: 1099023022}
   gun2: {fileID: 0}
   gun3: {fileID: 0}
@@ -6446,6 +6449,7 @@ Transform:
   - {fileID: 1562486893}
   - {fileID: 873946531}
   - {fileID: 2094108936}
+  - {fileID: 1679537784}
   m_Father: {fileID: 0}
   m_RootOrder: 14
 --- !u!114 &755520360
@@ -9897,6 +9901,9 @@ MonoBehaviour:
   shotgunRange: 25
   spreadFactor: .0500000007
   shotgunPellets: 7
+  revolverTimer: 10
+  rifleTimer: 80
+  shotgunTimer: 60
   gun1: {fileID: 595386664}
   gun2: {fileID: 1149925255}
   gun3: {fileID: 1018963401}
@@ -9940,7 +9947,7 @@ MonoBehaviour:
   sprintSpeed: 15
   mouseSpeed: 2
   upDownRange: 90
-  jumpSpeed: 4.5
+  jumpSpeed: 5.5
 --- !u!23 &1396757088
 Renderer:
   m_ObjectHideFlags: 0
@@ -14415,6 +14422,68 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2010019930}
   m_GameObject: {fileID: 1656361979}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1679537783
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1679537784}
+  - 114: {fileID: 1679537785}
+  m_Layer: 0
+  m_Name: blocksCounter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1679537784
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1679537783}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 755520359}
+  m_RootOrder: 7
+--- !u!114 &1679537785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1679537783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bafdd762480c948408ebc98bd9830fc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blocksTexture: {fileID: 2800000, guid: 02c119c3fabe6b04498d3f700d0e34a5, type: 3}
+  zeroTexture: {fileID: 2800000, guid: ba9d2525d9f73f548a3b112bd0d9cd6a, type: 3}
+  oneTexture: {fileID: 2800000, guid: 60a54e471f4fc524c95eb2eba87bb519, type: 3}
+  twoTexture: {fileID: 2800000, guid: 09e4ae8b2662b394a85a03e5b8321da6, type: 3}
+  threeTexture: {fileID: 2800000, guid: 901832a38cae7da40b343f8a0825af73, type: 3}
+  fourTexture: {fileID: 2800000, guid: be23d9d429bb5704da4fba4413c02af9, type: 3}
+  fiveTexture: {fileID: 2800000, guid: d2fcb199e5c442e4699392f60f6f45dd, type: 3}
+  sixTexture: {fileID: 2800000, guid: 4ca9dee0b8f70bb4289313053d2132d7, type: 3}
+  sevenTexture: {fileID: 2800000, guid: ea2f718c8de4c2e4696f87ad2f291429, type: 3}
+  eightTexture: {fileID: 2800000, guid: 2d750aa00707f4f4a95ed5bd51fa4fb5, type: 3}
+  nineTexture: {fileID: 2800000, guid: fb85117d11bd04647936739cba69d1e1, type: 3}
+  tenTexture: {fileID: 2800000, guid: 961f9448e39d20346a60582e351a6dc8, type: 3}
+  elevenTexture: {fileID: 2800000, guid: 752bc75ff3439b64ea92af811d1844ed, type: 3}
+  twelveTexture: {fileID: 2800000, guid: be42a69ba9359394b978b12f3b5d3e03, type: 3}
+  thirteenTexture: {fileID: 2800000, guid: 7d3949339c8608744848d3b6a29b45c5, type: 3}
+  fourteenTexture: {fileID: 2800000, guid: b7675cc0c8234ba4f9c9f4cf41223af1, type: 3}
+  fifteenTexture: {fileID: 2800000, guid: b9691ce0032dbff46ab91ab1f41ddced, type: 3}
+  sixteenTexture: {fileID: 2800000, guid: bffa53fd94a0db04580dfd9252dd13b8, type: 3}
+  seventeenTexture: {fileID: 2800000, guid: 665f922824fb3554282d48dbc2d1f814, type: 3}
+  eighteenTexture: {fileID: 2800000, guid: 8b36585cf7414534cadcafdd8859cc85, type: 3}
+  nineteenTexture: {fileID: 2800000, guid: 5a4e05da6e80b7f4999ccd6c3eda9b05, type: 3}
+  twentyTexture: {fileID: 2800000, guid: 3f06846818583f44abc422f1651d01c6, type: 3}
+  defaultTexture: {fileID: 2800000, guid: 11b7eb236cdeff542bac3120d8eac3ea, type: 3}
 --- !u!1 &1778460156
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,12 +5,23 @@ public class rayCastShoot : MonoBehaviour {
 	
 	
 	private float damage = 100.0f;
+
 	private float hitRange =100.0f;
 	public float revolverRange = 50.0f;
 	public float rifleRange = 100.0f;
 	public float shotgunRange = 25.0f;
+
 	public float spreadFactor = 0.02f;
 	public int shotgunPellets = 10;
+
+	private int mainTimer = 0;
+	private int shootTimer = 0;
+	public int revolverTimer = 5;
+	public int rifleTimer = 10;
+	public int shotgunTimer = 7;
+	private int placeHolderTimer = 5;
+	private bool canShoot = true;
+
 
 	
 	public GameObject gun1;
@@ -73,6 +84,7 @@ public class rayCastShoot : MonoBehaviour {
 			gunEnabler(currentGun);
 			placeHolderEffect = yellowEffect;
 			placeHolderShot = revolverShot;
+			placeHolderTimer = revolverTimer;
 			hitRange = revolverRange;
 			break;
 		case 2:
@@ -80,6 +92,7 @@ public class rayCastShoot : MonoBehaviour {
 			gunEnabler(currentGun);
 			placeHolderEffect = redEffect;
 			placeHolderShot = rifleShot;
+			placeHolderTimer = rifleTimer;
 			hitRange = rifleRange;
 			break;
 		case 3:
@@ -87,13 +100,10 @@ public class rayCastShoot : MonoBehaviour {
 			gunEnabler(currentGun);
 			placeHolderEffect = blueEffect;
 			placeHolderShot = shotgunShot;
+			placeHolderTimer = shotgunTimer;
 			hitRange = shotgunRange;
 			break;
-		case 4:
-			currentGun = gun4;
-			gunEnabler(currentGun);
-			placeHolderEffect = greenEffect;
-			break;
+		
 		default:
 			currentGun = gun1;
 			gunEnabler(currentGun);
@@ -101,9 +111,14 @@ public class rayCastShoot : MonoBehaviour {
 			break;
 			
 		}
+
+
+		if (mainTimer >= shootTimer + placeHolderTimer) {
+
+			canShoot = true;
+		}
 		
-		
-		if (Input.GetButtonDown ("Fire1") && gameVariables.ammunition > 0 && currentGun != gun3) {
+		if (Input.GetButtonDown ("Fire1") && gameVariables.ammunition > 0 && currentGun != gun3 && canShoot) {
 			
 			gameVariables.ammunition--;
 			
@@ -112,7 +127,8 @@ public class rayCastShoot : MonoBehaviour {
 			
 
 			source.PlayOneShot (placeHolderShot, 1.0f);
-			
+			shootTimer = mainTimer;
+			canShoot = false;
 			
 			if (Physics.Raycast (ray, out hit, hitRange)) {
 				
@@ -131,7 +147,7 @@ public class rayCastShoot : MonoBehaviour {
 			
 			
 			
-		} else if (Input.GetButtonDown ("Fire1") && gameVariables.ammunition > 0 && currentGun == gun3) {
+		} else if (Input.GetButtonDown ("Fire1") && gameVariables.ammunition > 0 && currentGun == gun3 && canShoot) {
 			
 			gameVariables.ammunition--;
 			
@@ -140,6 +156,8 @@ public class rayCastShoot : MonoBehaviour {
 
 
 			source.PlayOneShot (placeHolderShot, 1.0f);
+			canShoot = false;
+			shootTimer = mainTimer;
 
 			Vector3 gunForward = Camera.main.transform.forward;
 			gunForward.y  = gunForward.y + 0.1f;
@@ -183,9 +201,11 @@ public class rayCastShoot : MonoBehaviour {
 
 
 
-		}else if(Input.GetButtonDown ("Fire1") && gameVariables.ammunition == 0){
+		}else if(Input.GetButtonDown ("Fire1") && gameVariables.ammunition == 0 && canShoot){
 
 			source.PlayOneShot(noAmmo,1.0f);
+			canShoot = false;
+			shootTimer = mainTimer;
 
 		}
 		
@@ -248,6 +268,10 @@ public class rayCastShoot : MonoBehaviour {
 		}
 		
 		
+	}
+
+	void FixedUpdate(){
+		++mainTimer;
 	}
 	
 	
