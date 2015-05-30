@@ -16,4 +16,8 @@ public class mainMenu : MonoBehaviour {
 	public void OnClickPlay(){
 		Application.LoadLevel("goldNado");
 	}
+	
+	public void OnClickExit(){
+		Application.Quit();
+	}
 }
