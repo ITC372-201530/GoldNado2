@@ -3446,7 +3446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01a61e11b90aa0a4f8bc3b1ff6fe5c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnBlock: {fileID: 100000, guid: 151b7fdc24a502140a956bc3cd8b3eac, type: 2}
+  spawnBlock: {fileID: 195992, guid: 06e06a3abc67b1445b27bc18f850affe, type: 2}
 --- !u!114 &307592427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6379,7 +6379,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2f38eb10d0551e24680d126b8c5e36e6, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 2f38eb10d0551e24680d126b8c5e36e6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2f38eb10d0551e24680d126b8c5e36e6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2f38eb10d0551e24680d126b8c5e36e6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2f38eb10d0551e24680d126b8c5e36e6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f38eb10d0551e24680d126b8c5e36e6, type: 3}
