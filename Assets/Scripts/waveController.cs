@@ -15,17 +15,14 @@ public class waveController : MonoBehaviour {
 	private float tempHeight;
 	private float heightClock;
 	private bool heightFlag;
+	private bool gameOver = false;
+	private bool testMode = false;
 	
-	private const float windTime	= 10f;
-	private const float buildTime 	= 15f;
+	private const float windTime	= 15f;//15
+	private const float buildTime 	= 45f;//45
 	private const float heightTime 	= 2f;
 	
-	//public GUIText output;
-	
-	public GUIText scoreText;
-	public GUIText heightText;
-	public GUIText waveText;
-	public GUIText timerText;
+	public GUIText output;	
 	
 	public wind windObj;
 	public debris debrisObj;
@@ -38,9 +35,7 @@ public class waveController : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () 
-	{
-		
-	
+	{	
 		waveOn = false;
 		currentWave = 0;
 		score = 0;
@@ -52,6 +47,8 @@ public class waveController : MonoBehaviour {
 		tempHeight = 0;
 		heightClock = 2;
 		heightFlag = false;
+
+		//testMode = true;
 	}
 	
 	// Update is called once per frame
@@ -72,19 +69,18 @@ public class waveController : MonoBehaviour {
 		{
 			heightClock = 0;
 		}
+		int cHeight = (int)((currentHeight / 0.75f) + 0.5);
 		
 		if (!waveOn) 							//if not currently in a wave / in build phase
 		{
-			//output.text = "Next Wave In: " + (int)waveClock;
+			output.text = "Next Wave In: " + (int)waveClock;
 			
-			this.timerText.text ="WAVE STARTS IN " +(int)waveClock;
-			
-			if (waveClock <= 0)					//when build phase over, start wave
+			if (waveClock <= 0 && !gameOver)					//when build phase over, start wave
 			{ 			
 				removeDebris();	
 				debrisThrown = 0;
 				currentWave += 1;
-				goalHeight = (int)((currentWave * 3) * waveMultiplier);
+				goalHeight = (int)((currentWave * 2) * waveMultiplier);
 				waveOn = true;
 				windObj.beginWave(windObj.getMaxWSpeed() * waveMultiplier);
 				waveClock = windTime;
@@ -93,9 +89,7 @@ public class waveController : MonoBehaviour {
 		
 		if (waveOn) 							//whilst in wave
 		{
-			//output.text = "Remaining Time: " + (int)waveClock;
-			this.timerText.text ="WAVE ENDS IN " + (int)waveClock;
-			
+			output.text = "Remaining Time: " + (int)waveClock;
 			float throwChance = Random.Range (0, 10000);
 			if (throwChance <= 200 * waveMultiplier) 
 			{ 																
@@ -104,20 +98,26 @@ public class waveController : MonoBehaviour {
 				debrisThrown +=1;
 			}
 			//check if reached goal height
-			
+			if (cHeight >= goalHeight)
+			{
+				endWave ();
+			}
+
 			if (waveClock <= 0)
 			{
 				endWave();
+				if (!testMode)
+				{
+					gameOver = true;
+				}
 				//out of time before reaching goal height = gameOver
 			}			
 		}
 		checkGoalHeight();
-		//output.text += " Wave: " + currentWave + "  Goal Height: " + goalHeight + "  SCORE:  " + score + "   T: " + debrisThrown + "  CurrentHeight: " + currentHeight;
-	
-		
-		this.heightText.text ="HEIGHT - " +Mathf.CeilToInt(currentHeight) +" - " +goalHeight;
-		this.scoreText.text ="SCORE - " +score;
-		this.waveText.text ="WAVE - " +currentWave;
+		output.text += " Wave: " + currentWave + "  Goal Height: " + goalHeight + "  SCORE:  " + score + "  CurrentHeight: " + cHeight;if (gameOver)
+		{
+			output.text = "GAME OVER - WAVE: " + currentWave + " SCORE: " + score;
+		}
 	}
 	
 	void checkGoalHeight()
@@ -178,9 +178,9 @@ public class waveController : MonoBehaviour {
 	
 	void endWave()
 	{
-		float tScore = waveClock * 10; 							//add remaining time to score (seconds * 10)
-		tScore += currentWave * 20;								//for completeing wave
-		tScore += currentHeight * 5;							//height 
+		float tScore = waveClock * 100; 							//add remaining time to score (seconds * 100)
+		tScore += currentWave * 200;								//for completeing wave
+		tScore += currentHeight * 50;							//height 
 		tScore = tScore * waveMultiplier;						//multiply by difficulty
 		
 		

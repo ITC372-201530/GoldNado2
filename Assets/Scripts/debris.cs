@@ -91,6 +91,20 @@ public class debris : MonoBehaviour {
 		spawnPos.x = (spawnPos.x) * distMultiplier;
 		spawnPos.y = 1;
 		spawnPos.z = (spawnPos.z) * distMultiplier;
+
+		int debrisType = (int)Mathf.Round (Random.Range (1, 3));	
+		switch (debrisType) 
+		{
+		case 1:
+			debrisObj = GameObject.Find ("barrel");
+			break;
+			
+		default:
+			debrisObj = GameObject.Find("debris");
+			break;
+		}
+		//debrisObj = GameObject.Find ("barrel");
+
 		
 		GameObject tmp = Instantiate(debrisObj, spawnPos,  Quaternion.identity) as GameObject;	
 		rb = tmp.GetComponent<Rigidbody>();

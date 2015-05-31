@@ -30,6 +30,6 @@ public class Player : MonoBehaviour {
 	}
 	
 	private void drawText() {
-		this.text.text ="BLOCKS - " +this.blockCount;
+		this.text.text ="Blocks: " +this.blockCount;
 	}
 }
