@@ -99,8 +99,8 @@ public class wind : MonoBehaviour
 
 					windDir = obj.constantForce.force;
 
-					windDir.x = ((Mathf.Cos(angleRad)) * currWSpeed) * 0.1f;
-					windDir.z = ((Mathf.Sin(angleRad)) * currWSpeed) * 0.1f; 
+					windDir.x = ((Mathf.Cos(angleRad)) * currWSpeed) * 0.15f;
+					windDir.z = ((Mathf.Sin(angleRad)) * currWSpeed) * 0.15f; 
 					
 					obj.constantForce.force = windDir;					//Gold very slightly affected by wind
 				}
