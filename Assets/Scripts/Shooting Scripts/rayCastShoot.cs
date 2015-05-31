@@ -6,6 +6,8 @@ public class rayCastShoot : MonoBehaviour {
 	
 	private float damage = 100.0f;
 
+	public int maxAmmunition;
+
 	private float hitRange =100.0f;
 	public float revolverRange = 50.0f;
 	public float rifleRange = 100.0f;
@@ -27,15 +29,14 @@ public class rayCastShoot : MonoBehaviour {
 	public GameObject gun1;
 	public GameObject gun2;
 	public GameObject gun3;
-	public GameObject gun4;
 	private GameObject currentGun;
 	
 	
-	public Transform yellowEffect;
-	public Transform redEffect;
-	public Transform blueEffect;
-	public Transform greenEffect;
-	private Transform placeHolderEffect;
+	public Transform hitEffect;
+	public ParticleSystem revolverEffect;
+	public ParticleSystem rifleEffect;
+	public ParticleSystem shotgunEffect;
+	private ParticleSystem placeHolderEffect;
 
 	public AudioClip revolverShot;
 	public AudioClip rifleShot;
@@ -56,12 +57,17 @@ public class rayCastShoot : MonoBehaviour {
 		gameVariables.ammunition = 10;
 		currentGun = gun1;
 		gunEnabler (currentGun);
+
+		gameVariables.maxAmmo = maxAmmunition;
+
+
 		
 	}
 
 	void Awake(){
 
 		source = GetComponent<AudioSource> ();
+
 	}
 	
 	// Update is called once per frame
@@ -82,7 +88,7 @@ public class rayCastShoot : MonoBehaviour {
 		case 1:
 			currentGun = gun1;
 			gunEnabler(currentGun);
-			placeHolderEffect = yellowEffect;
+			placeHolderEffect = revolverEffect;
 			placeHolderShot = revolverShot;
 			placeHolderTimer = revolverTimer;
 			hitRange = revolverRange;
@@ -90,7 +96,7 @@ public class rayCastShoot : MonoBehaviour {
 		case 2:
 			currentGun = gun2;
 			gunEnabler(currentGun);
-			placeHolderEffect = redEffect;
+			placeHolderEffect = rifleEffect;
 			placeHolderShot = rifleShot;
 			placeHolderTimer = rifleTimer;
 			hitRange = rifleRange;
@@ -98,7 +104,7 @@ public class rayCastShoot : MonoBehaviour {
 		case 3:
 			currentGun = gun3;
 			gunEnabler(currentGun);
-			placeHolderEffect = blueEffect;
+			placeHolderEffect = shotgunEffect;
 			placeHolderShot = shotgunShot;
 			placeHolderTimer = shotgunTimer;
 			hitRange = shotgunRange;
@@ -107,7 +113,7 @@ public class rayCastShoot : MonoBehaviour {
 		default:
 			currentGun = gun1;
 			gunEnabler(currentGun);
-			placeHolderEffect = yellowEffect;
+
 			break;
 			
 		}
@@ -124,7 +130,12 @@ public class rayCastShoot : MonoBehaviour {
 			
 			print ("Weapon Number:" + weaponNumber);
 			print ("Ammunition:" + gameVariables.ammunition);
-			
+
+
+
+
+
+			placeHolderEffect.Play();
 
 			source.PlayOneShot (placeHolderShot, 1.0f);
 			shootTimer = mainTimer;
@@ -132,10 +143,10 @@ public class rayCastShoot : MonoBehaviour {
 			
 			if (Physics.Raycast (ray, out hit, hitRange)) {
 				
-				
-				
 
-				Transform particleClone = Instantiate (placeHolderEffect, hit.point, Quaternion.LookRotation (hit.normal)) as Transform;
+
+
+				Transform particleClone = Instantiate (hitEffect, hit.point, Quaternion.LookRotation (hit.normal)) as Transform;
 				
 				Destroy (particleClone.gameObject, 2);
 				
@@ -154,6 +165,10 @@ public class rayCastShoot : MonoBehaviour {
 			print ("Weapon Number:" + weaponNumber);
 			print ("Ammunition:" + gameVariables.ammunition);
 
+
+
+
+			placeHolderEffect.Play ();
 
 			source.PlayOneShot (placeHolderShot, 1.0f);
 			canShoot = false;
@@ -175,10 +190,10 @@ public class rayCastShoot : MonoBehaviour {
 
 				if (Physics.Raycast (gunPos, bulletVec, out hit, hitRange)) {
 					
+
+
 					
-					
-					
-					Transform particleClone = Instantiate (placeHolderEffect, hit.point, Quaternion.LookRotation (hit.normal)) as Transform;
+					Transform particleClone = Instantiate (hitEffect, hit.point, Quaternion.LookRotation (hit.normal)) as Transform;
 					
 					Destroy (particleClone.gameObject, 2);
 					
@@ -223,12 +238,9 @@ public class rayCastShoot : MonoBehaviour {
 		if (Input.GetButtonDown ("Weapon3")) {
 			
 			weaponNumber = 3;
-		}
-		
-		if (Input.GetButtonDown ("Weapon4")) {
-			
-			weaponNumber = 4;
-		}
+		}		
+
+
 		
 	}
 	
@@ -239,7 +251,7 @@ public class rayCastShoot : MonoBehaviour {
 			gun1.SetActive	(true);
 			gun2.SetActive (false);
 			gun3.SetActive (false);
-			gun4.SetActive (false);
+
 			
 		}
 		if (current == gun2) {
@@ -247,7 +259,7 @@ public class rayCastShoot : MonoBehaviour {
 			gun1.SetActive (false);
 			gun2.SetActive (true);
 			gun3.SetActive (false);
-			gun4.SetActive (false);
+
 			
 		}
 		if (current == gun3) {
@@ -255,17 +267,10 @@ public class rayCastShoot : MonoBehaviour {
 			gun2.SetActive (false);
 			gun1.SetActive (false);
 			gun3.SetActive (true);
-			gun4.SetActive (false);
+
 			
 		}
-		if (current == gun4) {
-			
-			gun2.SetActive (false);
-			gun3.SetActive (false);
-			gun1.SetActive (false);
-			gun4.SetActive (true);
-			
-		}
+
 		
 		
 	}

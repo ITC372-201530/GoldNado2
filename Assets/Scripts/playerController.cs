@@ -4,6 +4,8 @@ using System.Collections;
 
 
 
+
+
 public class playerController : MonoBehaviour {
 	
 	
@@ -25,6 +27,23 @@ public class playerController : MonoBehaviour {
 	private float fSpeed = 0.0f;
 
 	private float sSpeed = 0.0f;
+
+	public AudioClip pant1;
+	public AudioClip pant2;
+	public AudioClip pant3;
+	public AudioClip pant4;
+	public AudioClip jump1;
+	public AudioClip jump2;
+	public AudioClip jump3;
+	public AudioClip jump4;
+
+	private AudioSource source;
+
+	private int mainTimer = 0;
+	private int shootTimer = 0;
+	public int pantTimer = 5;
+
+	private bool canPlay = true;
 	
 	// Use this for initialization
 	
@@ -37,6 +56,13 @@ public class playerController : MonoBehaviour {
 		Screen.lockCursor = true;
 		
 	}
+
+	void Awake(){
+		
+		source = GetComponent<AudioSource> ();
+	}
+
+
 	
 	
 	
@@ -61,6 +87,20 @@ public class playerController : MonoBehaviour {
 		//float rotY = Input.GetAxis ("Mouse Y") *this.mouseSpeed;
 		
 		//this.transform.Rotate (rotY, 0, 0);
+
+
+
+
+
+		if (mainTimer >= shootTimer + pantTimer ) {
+			
+			canPlay = true;
+		}
+
+
+
+
+
 		
 		
 		
@@ -71,6 +111,58 @@ public class playerController : MonoBehaviour {
 		if(Input.GetKey(KeyCode.LeftShift)) {
 			
 			mspeed +=this.sprintSpeed;
+
+
+
+			if(canPlay){
+
+				switch(Random.Range (0,4)){
+					
+				case 0:
+					source.PlayOneShot (pant1, 1.0f);
+					shootTimer = mainTimer;
+					canPlay = false;
+
+					break;
+				case 1:
+					source.PlayOneShot (pant2, 1.0f);
+					shootTimer = mainTimer;
+					canPlay = false;
+
+					break;
+				case 2:
+					source.PlayOneShot (pant3, 1.0f);
+					shootTimer = mainTimer;
+					canPlay = false;
+
+					break;
+				case 3:
+					source.PlayOneShot (pant4, 1.0f);
+					shootTimer = mainTimer;
+					canPlay = false;
+
+					break;
+					
+				default:
+
+					shootTimer = mainTimer;
+					canPlay = false;
+
+					break;
+					
+					
+				}
+
+
+
+
+
+
+
+			}
+
+
+
 			
 		}
 
@@ -85,6 +177,30 @@ public class playerController : MonoBehaviour {
 		this.vVelocity += Physics.gravity.y *Time.deltaTime;
 		
 		if(Input.GetButtonDown ("Jump") && this.cc.isGrounded) {
+
+			switch(Random.Range (0,4)){
+
+			case 0:
+				source.PlayOneShot (jump1, 1.0f);
+				break;
+			case 1:
+				source.PlayOneShot (jump2, 1.0f);
+				break;
+			case 2:
+				source.PlayOneShot (jump3, 1.0f);
+				break;
+			case 3:
+				source.PlayOneShot (jump4, 1.0f);
+				break;
+
+			default:
+				break;
+
+
+			}
+
+			
+
 			
 			this.vVelocity =this.jumpSpeed;
 			
