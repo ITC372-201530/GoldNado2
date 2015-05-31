@@ -10,6 +10,7 @@ public class gameOver : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Screen.showCursor =true;
+		Screen.lockCursor = false;
 	
 		int score = PlayerPrefs.GetInt("score");
 		int wave = PlayerPrefs.GetInt("wave");
@@ -18,7 +19,7 @@ public class gameOver : MonoBehaviour {
 		this.score.text ="SCORE - " +score;
 		this.wave.text ="WAVE - " +wave;		
 				
-		if(hScore >score) {
+		if(hScore <score) {
 			PlayerPrefs.SetInt("hScore", score);
 			this.hScore.text ="NEW HIGH SCORE";
 		}
@@ -27,5 +28,13 @@ public class gameOver : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+	
+	public void OnClickPlay(){
+		Application.LoadLevel("goldNado");
+	}
+	
+	public void OnClickExit(){
+		Application.Quit();
 	}
 }
