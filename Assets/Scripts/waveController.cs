@@ -19,7 +19,7 @@ public class waveController : MonoBehaviour {
 	private bool testMode = false;
 	
 	private const float windTime	= 15f;//15
-	private const float buildTime 	= 45f;//45
+	private const float buildTime 	= 10f;//45f;//45
 	private const float heightTime 	= 2f;
 	
 	public GUIText output;
@@ -201,6 +201,12 @@ public class waveController : MonoBehaviour {
 		waveOn = false;
 		windObj.setWindStateDown();
 		waveClock = buildTime;
+		foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Debris")) {
+			if(obj.transform.parent ==null) {
+				Destroy(obj);
+			}
+		}
+		
 	}
 	
 	//get remainingTime for score

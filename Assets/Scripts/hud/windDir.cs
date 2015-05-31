@@ -57,7 +57,7 @@ public class windDir : MonoBehaviour {
 	{
 	
 		wind w =this.windController.GetComponent<wind>();
-	print (w.getAngle());
+	
 		// Note -90 compensation cos north is along 2D Y axis
 		rot = (-90 + this.transform.eulerAngles.y - north)* Mathf.Deg2Rad;
 		rotW = (-90 +w.getAngle() - north)* Mathf.Deg2Rad;
