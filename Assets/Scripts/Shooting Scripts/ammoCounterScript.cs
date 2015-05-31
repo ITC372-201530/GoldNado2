@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class ammoCounterScript : MonoBehaviour {
+	public GUIText output;
 
 	public Texture2D ammoTexture;
 	public Texture2D zeroTexture;
@@ -33,6 +34,8 @@ public class ammoCounterScript : MonoBehaviour {
 	
 	void OnGUI()
 	{
+		this.output.text ="AMMO - " +gameVariables.ammunition;
+	/*
 		float xMin = (Screen.width / 12) - (ammoTexture.width / 12);
 		float yMin = (Screen.height) - (ammoTexture.height * 2);
 		GUI.DrawTexture (new Rect (xMin, yMin, ammoTexture.width, ammoTexture.height), ammoTexture);
@@ -76,7 +79,7 @@ public class ammoCounterScript : MonoBehaviour {
 			break;
 		}
 
-
+*/
 
 	}
 

@@ -22,7 +22,7 @@ public class wind : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		output.text = "Wind Direction X: " + windDir.x.ToString () + ", Z: " + windDir.z.ToString () + ", Speed: " + currWSpeed + " / " + maxWSpeed;
+		//output.text = "Wind Direction X: " + windDir.x.ToString () + ", Z: " + windDir.z.ToString () + ", Speed: " + currWSpeed + " / " + maxWSpeed;
 		windState = windOff;
 		maxWSpeed = 50;
 		//beginWave(100f);
@@ -128,7 +128,7 @@ public class wind : MonoBehaviour
 			flagObj.transform.GetComponent<Cloth> ().externalAcceleration = flagVec;
 		//}
 
-		output.text = "Wind Direction X: " + windDir.x.ToString () + ", Z: " + windDir.z.ToString () + ", Speed: " + currWSpeed + " / " + maxWSpeed;
+		//output.text = "Wind Direction X: " + windDir.x.ToString () + ", Z: " + windDir.z.ToString () + ", Speed: " + currWSpeed + " / " + maxWSpeed;
 		
 	}
 

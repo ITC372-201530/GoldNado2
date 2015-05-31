@@ -22,7 +22,12 @@ public class waveController : MonoBehaviour {
 	private const float buildTime 	= 45f;//45
 	private const float heightTime 	= 2f;
 	
-	public GUIText output;	
+	public GUIText output;
+	
+	public GUIText heightText;
+	public GUIText scoreText;
+	public GUIText waveText;
+	public GUIText waveStartText;
 	
 	public wind windObj;
 	public debris debrisObj;
@@ -73,7 +78,8 @@ public class waveController : MonoBehaviour {
 		
 		if (!waveOn) 							//if not currently in a wave / in build phase
 		{
-			output.text = "Next Wave In: " + (int)waveClock;
+			//output.text = "Next Wave In: " + (int)waveClock;
+			this.waveStartText.text ="WAVE STARTS IN " + (int)waveClock;
 			
 			if (waveClock <= 0 && !gameOver)					//when build phase over, start wave
 			{ 			
@@ -89,7 +95,8 @@ public class waveController : MonoBehaviour {
 		
 		if (waveOn) 							//whilst in wave
 		{
-			output.text = "Remaining Time: " + (int)waveClock;
+			//output.text = "Remaining Time: " + (int)waveClock;
+			this.waveStartText.text ="WAVE ENDS IN " + (int)waveClock;
 			float throwChance = Random.Range (0, 10000);
 			if (throwChance <= 200 * waveMultiplier) 
 			{ 																
@@ -114,7 +121,12 @@ public class waveController : MonoBehaviour {
 			}			
 		}
 		checkGoalHeight();
-		output.text += " Wave: " + currentWave + "  Goal Height: " + goalHeight + "  SCORE:  " + score + "  CurrentHeight: " + cHeight;if (gameOver)
+		//output.text += " Wave: " + currentWave + "  Goal Height: " + goalHeight + "  SCORE:  " + score + "  CurrentHeight: " + cHeight;
+		this.heightText.text ="HEIGHT - " +cHeight +" - " +goalHeight;
+		this.scoreText.text ="SCORE - " +score;
+		this.waveText.text ="WAVE - " +currentWave;
+		
+		if (gameOver)
 		{
 			output.text = "GAME OVER - WAVE: " + currentWave + " SCORE: " + score;
 		}
