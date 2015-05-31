@@ -128,7 +128,9 @@ public class waveController : MonoBehaviour {
 		
 		if (gameOver)
 		{
-			output.text = "GAME OVER - WAVE: " + currentWave + " SCORE: " + score;
+			PlayerPrefs.SetInt("score", score);
+			PlayerPrefs.SetInt("wave", currentWave);
+			Application.LoadLevel("endScene");
 		}
 	}
 	

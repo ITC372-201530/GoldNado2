@@ -109,6 +109,7 @@ public class PlaceBlock : MonoBehaviour {
 		Vector3 spawnPos =pos +dir *this.blockDist;
 		
 		this.tmpBlock =Instantiate(this.goldBrick, spawnPos, rot) as GameObject;
+		this.tmpBlock.tag ="buildBlock";
 		
 		this.tmpShadow =Instantiate(this.shadow, spawnPos, this.shadow.transform.rotation) as GameObject;
 		this.tmpShadow.transform.parent =this.tmpBlock.transform;
@@ -146,6 +147,7 @@ public class PlaceBlock : MonoBehaviour {
 			spt.col =col;
 			 	
 			this.tmpBlock.constantForce.enabled =true;
+			this.tmpBlock.tag ="Gold";
 			
 			this.tmpBlock =null;
 			this.player.removeBlock();
