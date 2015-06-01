@@ -18,8 +18,8 @@ public class waveController : MonoBehaviour {
 	private bool gameOver = false;
 	private bool testMode = false;
 	
-	private const float windTime	= 15f;//15
-	private const float buildTime 	= 45f;//45
+	private float windTime	= 25f;//15
+	private float buildTime 	= 55f;//45
 	private const float heightTime 	= 2f;
 	
 	public GUIText output;
@@ -36,7 +36,7 @@ public class waveController : MonoBehaviour {
 	
 	//public List<debris> debrisList = new List<debris>();
 	
-	private bool waveOn;
+	public bool waveOn;
 	
 	// Use this for initialization
 	void Start () 
@@ -87,6 +87,7 @@ public class waveController : MonoBehaviour {
 				debrisThrown = 0;
 				currentWave += 1;
 				goalHeight = (int)((currentWave * 2) * waveMultiplier);
+				removeDebris ();
 				waveOn = true;
 				windObj.beginWave(windObj.getMaxWSpeed() * waveMultiplier);
 				waveClock = windTime;
@@ -184,9 +185,12 @@ public class waveController : MonoBehaviour {
 	
 	void removeDebris()
 	{
+		
 		foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Debris")) 
 		{
-			//Destroy(obj);
+			if (obj.transform.parent == null) {
+				Destroy (obj);
+			}
 		}
 	}
 	
@@ -196,18 +200,16 @@ public class waveController : MonoBehaviour {
 		tScore += currentWave * 200;								//for completeing wave
 		tScore += currentHeight * 50;							//height 
 		tScore = tScore * waveMultiplier;						//multiply by difficulty
-		
+
+		buildTime += 10 * (waveMultiplier *2);
+		windTime += 10 * (waveMultiplier *2);
 		
 		score += (int)tScore;
 		waveMultiplier += 0.02f;
 		waveOn = false;
 		windObj.setWindStateDown();
 		waveClock = buildTime;
-		foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Debris")) {
-			if(obj.transform.parent ==null) {
-				Destroy(obj);
-			}
-		}
+
 		
 	}
 	

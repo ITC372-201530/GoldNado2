@@ -103,7 +103,7 @@ public class debris : MonoBehaviour {
 			debrisObj = GameObject.Find("debris");
 			break;
 		}
-		//debrisObj = GameObject.Find ("barrel");
+		debrisObj = GameObject.Find ("barrel");
 
 		
 		GameObject tmp = Instantiate(debrisObj, spawnPos,  Quaternion.identity) as GameObject;	

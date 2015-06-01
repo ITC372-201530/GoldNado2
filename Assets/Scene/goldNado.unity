@@ -4579,6 +4579,7 @@ GameObject:
   - 4: {fileID: 755520359}
   - 114: {fileID: 755520360}
   - 82: {fileID: 755520361}
+  - 114: {fileID: 755520362}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4680,6 +4681,29 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &755520362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 755520358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9509cf74570be7c43b58e059faa6752a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windClips:
+  - {fileID: 8300000, guid: 9c2cbc9e327212749994bffc3af925d8, type: 3}
+  - {fileID: 8300000, guid: 5cf29d4fd571b54428fe7d63a10e9929, type: 3}
+  - {fileID: 8300000, guid: 22d7125c3d7639144a1796cd1bfd4f78, type: 3}
+  - {fileID: 8300000, guid: a7ccc595330831a428f748c52a113b7e, type: 3}
+  - {fileID: 8300000, guid: 87ae54baf888c534eb882d38a08b477b, type: 3}
+  - {fileID: 8300000, guid: 430b9d14f35988b488f18c289a0323dd, type: 3}
+  - {fileID: 8300000, guid: df02475ba656731478c61e372fa1bb09, type: 3}
+  - {fileID: 8300000, guid: cf4f42f54c40fd84395fbf7e7ce9e850, type: 3}
+  - {fileID: 8300000, guid: 05afa1a18add6514cb676fa5a78efe69, type: 3}
+  - {fileID: 8300000, guid: 935c66141709d414faafaaeda63461c2, type: 3}
+  waveCont: {fileID: 1411078060}
 --- !u!1 &780634628
 GameObject:
   m_ObjectHideFlags: 0
@@ -5898,6 +5922,8 @@ GameObject:
   - 4: {fileID: 1079767303}
   - 160: {fileID: 1079767305}
   - 161: {fileID: 1079767304}
+  - 114: {fileID: 1079767306}
+  - 82: {fileID: 1079767308}
   m_Layer: 0
   m_Name: InteractiveCloth
   m_TagString: Flag
@@ -5967,6 +5993,89 @@ InteractiveCloth:
   - m_Collider: {fileID: 1993159519}
     m_TwoWayInteraction: 0
     m_Tearable: 0
+--- !u!114 &1079767306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1079767302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0cd92682a3100e4290ae008caa0a657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clothClips:
+  - {fileID: 8300000, guid: bc54eca1c5522d1468dbb1d3875c9c8d, type: 3}
+  - {fileID: 8300000, guid: 22da7a4ac6d03e24eb96eb6632176783, type: 3}
+  - {fileID: 8300000, guid: 5c49d9a8af7a1e145bb072326f5c821b, type: 3}
+  - {fileID: 8300000, guid: 8231b63ccb781e849a726df837352508, type: 3}
+  - {fileID: 8300000, guid: 486f0caa09a3a284197a2c8c0a534aac, type: 3}
+  - {fileID: 8300000, guid: 6ae8c4a3e21cac34ba5fce73a732ab20, type: 3}
+  - {fileID: 8300000, guid: 7a59742339e461648aa9cc6509a22305, type: 3}
+  - {fileID: 8300000, guid: 00408ac8c257d7e48add009f31bc82dd, type: 3}
+  - {fileID: 8300000, guid: c9e60bde3c373314dab5f54daa9e7df4, type: 3}
+  - {fileID: 8300000, guid: abf9ea7880f2dd7479f650db4db8e741, type: 3}
+  - {fileID: 8300000, guid: b232450ebf8e68343bbe89f3d07daa63, type: 3}
+  - {fileID: 8300000, guid: 678838972427a094fb0546a84f0dd603, type: 3}
+  waveCont: {fileID: 1411078060}
+--- !u!82 &1079767308
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1079767302}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 5
+  MaxDistance: 1000
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1108159938
 GameObject:
   m_ObjectHideFlags: 0
@@ -7087,6 +7196,7 @@ MonoBehaviour:
   windObj: {fileID: 1392018957}
   debrisObj: {fileID: 1274814853}
   debrisHolder: {fileID: 0}
+  waveOn: 0
 --- !u!4 &1411078061
 Transform:
   m_ObjectHideFlags: 0
