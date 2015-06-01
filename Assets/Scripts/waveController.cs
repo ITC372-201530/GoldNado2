@@ -52,7 +52,7 @@ public class waveController : MonoBehaviour {
 		tempHeight = 0;
 		heightClock = 2;
 		heightFlag = false;
-
+		
 		//testMode = true;
 	}
 	
@@ -106,11 +106,11 @@ public class waveController : MonoBehaviour {
 				debrisThrown +=1;
 			}
 			//check if reached goal height
-			if (cHeight >= goalHeight)
+			if (cHeight >= goalHeight && waveClock <= windTime - 10)
 			{
 				endWave ();
 			}
-
+			
 			if (waveClock <= 0)
 			{
 				endWave();
@@ -200,16 +200,16 @@ public class waveController : MonoBehaviour {
 		tScore += currentWave * 200;								//for completeing wave
 		tScore += currentHeight * 50;							//height 
 		tScore = tScore * waveMultiplier;						//multiply by difficulty
-
-		buildTime += 10 * (waveMultiplier *2);
-		windTime += 10 * (waveMultiplier *2);
+		
+		buildTime += 10 * (waveMultiplier *1.5f);
+		windTime += 10 * (waveMultiplier *1.5f);
 		
 		score += (int)tScore;
 		waveMultiplier += 0.02f;
 		waveOn = false;
 		windObj.setWindStateDown();
 		waveClock = buildTime;
-
+		
 		
 	}
 	
