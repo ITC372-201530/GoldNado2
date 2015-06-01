@@ -8685,7 +8685,7 @@ Transform:
   - {fileID: 1079767303}
   - {fileID: 1993159521}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 12
 --- !u!1001 &1779145395
 Prefab:
   m_ObjectHideFlags: 0
@@ -9262,7 +9262,7 @@ Transform:
   m_Children:
   - {fileID: 780634629}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
 --- !u!1001 &1877035303
 Prefab:
   m_ObjectHideFlags: 0
@@ -9609,7 +9609,7 @@ Transform:
   m_Children:
   - {fileID: 994763074}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
 --- !u!64 &2038699819
 MeshCollider:
   m_ObjectHideFlags: 0
