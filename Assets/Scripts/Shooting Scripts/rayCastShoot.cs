@@ -128,8 +128,8 @@ public class rayCastShoot : MonoBehaviour {
 			
 			gameVariables.ammunition--;
 			
-			print ("Weapon Number:" + weaponNumber);
-			print ("Ammunition:" + gameVariables.ammunition);
+			//print ("Weapon Number:" + weaponNumber);
+			//print ("Ammunition:" + gameVariables.ammunition);
 
 
 
@@ -143,7 +143,7 @@ public class rayCastShoot : MonoBehaviour {
 			
 			if (Physics.Raycast (ray, out hit, hitRange)) {
 				
-
+				
 
 
 				Transform particleClone = Instantiate (hitEffect, hit.point, Quaternion.LookRotation (hit.normal)) as Transform;
@@ -162,8 +162,8 @@ public class rayCastShoot : MonoBehaviour {
 			
 			gameVariables.ammunition--;
 			
-			print ("Weapon Number:" + weaponNumber);
-			print ("Ammunition:" + gameVariables.ammunition);
+			//print ("Weapon Number:" + weaponNumber);
+			//print ("Ammunition:" + gameVariables.ammunition);
 
 
 
@@ -189,9 +189,6 @@ public class rayCastShoot : MonoBehaviour {
 					0));
 
 				if (Physics.Raycast (gunPos, bulletVec, out hit, hitRange)) {
-					
-
-
 					
 					Transform particleClone = Instantiate (hitEffect, hit.point, Quaternion.LookRotation (hit.normal)) as Transform;
 					

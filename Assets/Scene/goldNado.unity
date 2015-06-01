@@ -2974,6 +2974,10 @@ Prefab:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 97e55b3a8d7ef2f48b302c5886fce2dc, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97e55b3a8d7ef2f48b302c5886fce2dc, type: 2}
   m_RootGameObject: {fileID: 1558831824}
@@ -8517,6 +8521,7 @@ GameObject:
   - 75: {fileID: 1847863145}
   - 114: {fileID: 1847863151}
   - 135: {fileID: 1847863152}
+  - 114: {fileID: 1847863153}
   m_Layer: 0
   m_Name: barrel
   m_TagString: Debris
@@ -8637,6 +8642,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.34454966
   m_Center: {x: -1.1920929e-07, y: 0, z: .935039341}
+--- !u!114 &1847863153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1847863144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8df50e6c12ae348b12178adcabb8c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  bodyObject: {fileID: 1847863144}
 --- !u!1 &1856028929
 GameObject:
   m_ObjectHideFlags: 0
