@@ -18,7 +18,7 @@ public class spawnBlocks : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(!this.spawnning) {
-			if(this.spawnCount <4) {
+			if(this.spawnCount <7) {
 				this.spawnning =true;
 				InvokeRepeating("spawn", Random.Range(5f, 10f), 0f);
 			}
@@ -31,7 +31,7 @@ public class spawnBlocks : MonoBehaviour {
 	
 	private bool spawn() {
 		int i =0;
-		int spawnPos =Random.Range(0, 5);
+		int spawnPos =Random.Range(0, 8);
 		bool res =true;
 		
 		foreach(GameObject obj in GameObject.FindGameObjectsWithTag("spawnBlock")) {
