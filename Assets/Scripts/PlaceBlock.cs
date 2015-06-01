@@ -7,6 +7,11 @@ public class PlaceBlock : MonoBehaviour {
 	public GameObject camera;
 	public GameObject shadow;
 	
+	public AudioClip dropGold;
+	public AudioClip pickupGold;
+	
+	public GameObject audioSource;
+	
 	public float initBlockDist =5.0f;
 	
 	private GameObject tmpBlock;
@@ -151,9 +156,20 @@ public class PlaceBlock : MonoBehaviour {
 			
 			this.tmpBlock =null;
 			this.player.removeBlock();
+			
+			AudioSource source =this.audioSource.GetComponent<AudioSource> ();
+			
+			source.PlayOneShot(this.dropGold, 1f);
 		}
 		
 		this.blockDist =this.initBlockDist;
+	}
+	
+	public void playPickupGold() {
+		
+	
+		AudioSource source =this.audioSource.GetComponent<AudioSource> ();
+		source.PlayOneShot(this.pickupGold, 1f);
 	}
 	
 }
